@@ -38,7 +38,8 @@
 </div>
 <th:block th:replace="common/common-footer-resource"/>
 <script th:src="@{/js/particles/particles.min.js}"></script>
-<script th:inline="javascript">
+<script>
+
     var app = new Vue({
         el: "#app",
         data: {
@@ -48,6 +49,10 @@
 
     particlesJS.load('particles-js', '/js/particles/particles.json', function () {
         console.log('callback - particles.js config loaded');
+    });
+
+    axios.get("/user/json").then((response) => {
+        console.log(response);
     });
 
 </script>
