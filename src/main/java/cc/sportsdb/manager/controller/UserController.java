@@ -1,5 +1,6 @@
 package cc.sportsdb.manager.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    @Value("${test}")
+    private String value;
+
+    @ResponseBody
+    @GetMapping("/value")
+    public String value() {
+        return value;
+    }
 
     @GetMapping("/login")
     public String login() {
