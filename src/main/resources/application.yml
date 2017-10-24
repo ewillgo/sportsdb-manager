@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: sportsdb-manager
-    index: 0
-  thymeleaf:
-    cache: false
-    encoding: UTF-8
-    mode: HTML5
-    suffix: .html
