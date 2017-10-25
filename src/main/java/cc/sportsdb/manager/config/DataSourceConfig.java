@@ -1,6 +1,6 @@
 package cc.sportsdb.manager.config;
 
-import cc.sportsdb.springboot.demo.support.DynamicDataSourceHolder;
+import cc.sportsdb.manager.support.DynamicDataSourceHolder;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
