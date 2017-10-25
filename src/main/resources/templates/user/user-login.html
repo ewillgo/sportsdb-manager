@@ -51,7 +51,7 @@
         console.log('callback - particles.js config loaded');
     });
 
-    axios.get("/user/json").then((response) => {
+    app.$http.get("/user/json").then(function (response) {
         console.log(response);
     });
 
