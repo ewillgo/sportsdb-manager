@@ -1,16 +1,23 @@
 package cc.sportsdb.manager;
 
+import cc.sportsdb.manager.base.MockBaseControllerTest;
+import cc.sportsdb.manager.controller.UserController;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.web.servlet.MvcResult;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SportsdbManagerApplicationTests {
+public class SportsdbManagerApplicationTests extends MockBaseControllerTest<UserController> {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Value("${local.server.port}")
+    private String serverPort;
 
+    private static final Logger logger = LoggerFactory.getLogger(SportsdbManagerApplicationTests.class);
+
+    @Test
+    public void loginTest() throws Exception {
+        MvcResult result = mockGet("/user/login");
+        logger.info("result: {}", result.getResponse().getContentAsString());
+    }
 }
