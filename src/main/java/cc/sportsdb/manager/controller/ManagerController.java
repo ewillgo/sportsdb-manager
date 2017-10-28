@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/manager")
+public class ManagerController {
 
     @GetMapping("/login")
     public String login() {
 
-        return "user/user-login";
+        return "manager/manager-login";
     }
 
     @ResponseBody
@@ -23,7 +23,7 @@ public class UserController {
     public Map<String, Object> json() {
         Map<String, Object> map = new HashMap<>();
         map.put("name", "hello");
-        map.put("age", 18);
+        map.put("age", 99);
         return map;
     }
 }

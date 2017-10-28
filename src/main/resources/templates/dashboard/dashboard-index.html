@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title>Login - Sportsdb Manager</title>
+    <link th:href="@{/css/normalize.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/user/user-login.css}" rel="stylesheet"/>
+</head>
+<body>
+<div id="app">
+    <div id="particles-js"></div>
+    <div id="app">
+        <div id="login-box">
+            <h3>Sportsdb Manager</h3>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input type="email" class="form-control" placeholder="Email"/>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="common/common-footer-resource"/>
+<script th:src="@{/js/vue2/axios.min.js}"></script>
+<script th:src="@{/js/vue2/vue.min.js}"></script>
+<script th:src="@{/js/vue2/vue-axios.min.js}"></script>
+<script th:src="@{/js/particles/particles.min.js}"></script>
+<script>
+
+//    var app = new Vue({
+//        el: "#app",
+//        data: {
+//            message: _.now()
+//        }
+//    });
+//
+    particlesJS.load('particles-js', '/js/particles/particles.json', function () {
+        console.log('callback - particles.js config loaded');
+    });
+//
+//    app.$http.get("/user/json").then(function (response) {
+//        console.log(response);
+//    });
+
+</script>
+</body>
+</html>
