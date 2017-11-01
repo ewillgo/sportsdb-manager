@@ -1,8 +1,10 @@
 package cc.sportsdb.manager.config;
 
 import cc.sportsdb.common.config.WebConfig;
-import cc.sportsdb.common.database.config.DataSourceConfig;
+import cc.sportsdb.common.database.config.DataSourceList;
+import cc.sportsdb.common.security.XSSFilter;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,11 +14,12 @@ import static cc.sportsdb.manager.constant.DataSourceConstant.DS_TEST;
 
 @Configuration
 @ImportAutoConfiguration({WebConfig.class})
+@ServletComponentScan(basePackageClasses = {XSSFilter.class})
 public class BasicConfig {
 
     @Bean
-    public DataSourceConfig.DataSourceNameContainer dataSourceNameContainer() {
-        return new DataSourceConfig.DataSourceNameContainer(Arrays.asList(DS_TEST));
+    public DataSourceList dataSourceList() {
+        return new DataSourceList(Arrays.asList(DS_TEST));
     }
 
 }

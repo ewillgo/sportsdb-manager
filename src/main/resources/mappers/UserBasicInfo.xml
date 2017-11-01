@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.sportsdb.manager.dao.manager.ManagerDAO">
+
+    <sql id="table_name">spdb_manager</sql>
+
+    <select id="getManagerById" resultType="cc.sportsdb.manager.domain.manager.Manager">
+        SELECT ${fields}
+        FROM <include refid="table_name"/>
+        WHERE id = #{id}
+        LIMIT 1
+    </select>
+
+    <insert id="addManager" parameterType="cc.sportsdb.manager.domain.manager.Manager">
+        INSERT INTO <include refid="table_name"/>
+          (email, password, nickname, avatar)
+        VALUES
+          (#{email}, #{password}, #{nickname}, #{avatar})
+    </insert>
+
+</mapper>

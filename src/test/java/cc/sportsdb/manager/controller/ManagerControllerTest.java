@@ -3,6 +3,7 @@ package cc.sportsdb.manager.controller;
 import cc.sportsdb.common.test.AbstractMockController;
 import cc.sportsdb.common.util.JsonUtil;
 import cc.sportsdb.manager.SportsdbManagerApplication;
+import cc.sportsdb.manager.controller.manager.ManagerController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,13 +22,23 @@ import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SportsdbManagerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserControllerTest extends AbstractMockController<ManagerController> {
+public class ManagerControllerTest extends AbstractMockController<ManagerController> {
 
     @Autowired
     @Qualifier("httpRestTemplate")
     private RestTemplate restTemplate;
 
-    private static final Logger logger = LoggerFactory.getLogger(UserControllerTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(ManagerControllerTest.class);
+
+    @Test
+    public void addTest() throws Exception {
+        Map<String, String> data = new HashMap<>();
+        data.put("email", "test@qq.com<script>alert(0)</script>");
+        data.put("password", "asdf");
+        data.put("nickname", "will");
+        MvcResult result = mockPost("/manager/add", data);
+        logger.info("result: {}", result.getResponse().getContentAsString());
+    }
 
     @Test
     public void loginTest() throws Exception {
