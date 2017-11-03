@@ -22,4 +22,10 @@ public class BasicConfig {
         return new DataSourceList(Arrays.asList(DS_TEST));
     }
 
+//    @Bean
+//    public HandlerInterceptorList handlerInterceptorList() {
+//        HandlerInterceptorList handlerInterceptorList = new HandlerInterceptorList();
+//        return handlerInterceptorList;
+//    }
+
 }
