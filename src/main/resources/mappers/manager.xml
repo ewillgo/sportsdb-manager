@@ -13,9 +13,9 @@
 
     <insert id="addManager" parameterType="cc.sportsdb.manager.domain.manager.Manager">
         INSERT INTO <include refid="table_name"/>
-          (email, password, nickname, avatar)
+          (manager_id, email, password, nickname, avatar)
         VALUES
-          (#{email}, #{password}, #{nickname}, #{avatar})
+          (#{managerId}, #{email}, #{password}, #{nickname}, #{avatar})
     </insert>
 
 </mapper>

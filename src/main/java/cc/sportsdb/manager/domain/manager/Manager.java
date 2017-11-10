@@ -3,7 +3,8 @@ package cc.sportsdb.manager.domain.manager;
 import java.time.LocalDateTime;
 
 public class Manager {
-    private Integer id;
+    private Long id;
+    private String managerId;
     private String email;
     private String password;
     private String nickname;
@@ -11,12 +12,20 @@ public class Manager {
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(String managerId) {
+        this.managerId = managerId;
     }
 
     public String getEmail() {
