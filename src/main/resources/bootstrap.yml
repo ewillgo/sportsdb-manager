@@ -23,5 +23,5 @@ spring:
           enabled: true
           service-id: sportsdb-config-server
         name: "${spring.application.name}-config"
-        profile: test
+        profile: dev
         failFast: true
