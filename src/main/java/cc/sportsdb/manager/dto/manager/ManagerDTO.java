@@ -8,10 +8,10 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class ManagerDTO implements DTOAttributes<Manager> {
 
-    @IsUUID(message = "Manager id not a UUID.")
+    @IsUUID(message = "Manager's id not a UUID.")
     private String managerId;
 
-    @Email(message = "Email format incorrect.")
+    @Email(message = "Email's format incorrect.")
     private String email;
 
     @NotBlank(message = "Password can not be blank.")
