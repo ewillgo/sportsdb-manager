@@ -11,6 +11,11 @@
         LIMIT 1
     </select>
 
+    <select id="getManagers" resultType="cc.sportsdb.manager.domain.manager.Manager">
+        SELECT *
+        FROM <include refid="table_name"/>
+    </select>
+
     <insert id="addManager" parameterType="cc.sportsdb.manager.domain.manager.Manager">
         INSERT INTO <include refid="table_name"/>
           (manager_id, email, password, nickname, avatar)

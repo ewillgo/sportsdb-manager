@@ -3,6 +3,8 @@ package cc.sportsdb.manager.dao.manager;
 import cc.sportsdb.manager.domain.manager.Manager;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface ManagerDAO {
 
@@ -13,4 +15,6 @@ public interface ManagerDAO {
      * @return
      */
     public boolean addManager(Manager manager);
+
+    public List<Manager> getManagers();
 }

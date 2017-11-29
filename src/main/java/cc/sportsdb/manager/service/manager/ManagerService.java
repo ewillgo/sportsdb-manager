@@ -5,7 +5,10 @@ import cc.sportsdb.manager.constant.DataSourceConstant;
 import cc.sportsdb.manager.dao.manager.ManagerDAO;
 import cc.sportsdb.manager.domain.manager.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ManagerService {
@@ -22,5 +25,11 @@ public class ManagerService {
     @DataSource(DataSourceConstant.DS_TEST)
     public boolean addManager(Manager manager) {
         return managerDAO.addManager(manager);
+    }
+
+    @Cacheable(cacheNames = "manager")
+    @DataSource(DataSourceConstant.DS_TEST)
+    public List<Manager> getManagers() {
+        return managerDAO.getManagers();
     }
 }

@@ -33,4 +33,11 @@ public class ManagerController {
         return result;
     }
 
+    @ResponseBody
+    @PostMapping("/getManagers")
+    public Result getManagers(Result result) {
+        result.setData(managerService.getManagers());
+        return result;
+    }
+
 }
