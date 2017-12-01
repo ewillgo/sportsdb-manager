@@ -5,7 +5,6 @@ import cc.sportsdb.manager.constant.DataSourceConstant;
 import cc.sportsdb.manager.dao.manager.ManagerDAO;
 import cc.sportsdb.manager.domain.manager.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class ManagerService {
         return managerDAO.addManager(manager);
     }
 
-    @Cacheable(cacheNames = "manager")
+    //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#root.methodName")
     @DataSource(DataSourceConstant.DS_TEST)
     public List<Manager> getManagers() {
         return managerDAO.getManagers();

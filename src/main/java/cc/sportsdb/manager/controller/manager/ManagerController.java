@@ -1,13 +1,16 @@
 package cc.sportsdb.manager.controller.manager;
 
 import cc.sportsdb.common.dto.Result;
+import cc.sportsdb.manager.constant.RedisConstant;
 import cc.sportsdb.manager.dto.manager.ManagerDTO;
 import cc.sportsdb.manager.service.manager.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 import static cc.sportsdb.manager.controller.manager.ManagerConst.MANAGER_ADD_FAIL;
 import static cc.sportsdb.manager.controller.manager.ManagerConst.MANAGER_ADD_SUCCESS;
@@ -35,7 +38,11 @@ public class ManagerController {
 
     @ResponseBody
     @PostMapping("/getManagers")
-    public Result getManagers(Result result) {
+    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#root.methodName")
+    public Map<String, Object> getManagers() {
+        Result result = new Result();
+        result.setStatus(1);
+        result.setMessage("ok");
         result.setData(managerService.getManagers());
         return result;
     }
