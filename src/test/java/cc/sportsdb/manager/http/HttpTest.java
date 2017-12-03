@@ -1,6 +1,6 @@
 package cc.sportsdb.manager.http;
 
-import cc.sportsdb.common.util.HttpUtil;
+import cc.sportsdb.common.http.HttpUtil;
 import net.coobird.thumbnailator.Thumbnails;
 import org.junit.Test;
 import org.junit.runner.RunWith;
