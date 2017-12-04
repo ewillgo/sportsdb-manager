@@ -1,9 +1,7 @@
 package cc.sportsdb.manager.mq;
 
 import cc.sportsdb.common.data.mq.MqUtil;
-import cc.sportsdb.common.util.JsonUtil;
 import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -39,7 +37,7 @@ public class Producer {
         long number = atomicLong.getAndAdd(1);
         Map<String, Object> dataMap = new LinkedHashMap<>();
         dataMap.put("id", number);
-        amqpTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, JsonUtil.toJsonString(dataMap));
+        amqpTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, dataMap);
         System.out.println(Thread.currentThread().getName() + " send number: " + dataMap);
     }
 
@@ -49,7 +47,7 @@ public class Producer {
         }
         this.exchange = MqUtil.declareDirectExchange(EXCHANGE_NAME, true, false);
         this.queue = MqUtil.declareDurableQueue(QUEUE_NAME);
-        amqpAdmin.declareBinding(BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY).noargs());
+        this.binding = MqUtil.binding(queue, exchange, ROUTING_KEY);
         inited = true;
     }
 }
