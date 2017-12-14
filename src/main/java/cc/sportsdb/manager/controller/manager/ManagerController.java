@@ -38,7 +38,7 @@ public class ManagerController {
 
     @ResponseBody
     @PostMapping("/getManagers")
-    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#root.methodName")
+    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#30", key = "#root.methodName")
     public Map<String, Object> getManagers() {
         Result result = new Result();
         result.setStatus(1);

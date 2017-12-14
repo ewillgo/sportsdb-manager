@@ -1,7 +1,7 @@
 package cc.sportsdb.manager.config;
 
 import cc.sportsdb.common.config.WebConfig;
-import cc.sportsdb.common.database.config.DataSourceList;
+import cc.sportsdb.common.database.DataSourceList;
 import cc.sportsdb.common.security.XSSFilter;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
