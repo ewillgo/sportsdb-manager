@@ -1,6 +1,6 @@
 package cc.sportsdb.manager.service.manager;
 
-import cc.sportsdb.common.database.annotation.DataSource;
+import cc.sportsdb.common.database.DataSource;
 import cc.sportsdb.manager.constant.DataSourceConstant;
 import cc.sportsdb.manager.dao.manager.ManagerDAO;
 import cc.sportsdb.manager.domain.manager.Manager;
