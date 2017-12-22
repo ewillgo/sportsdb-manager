@@ -2,6 +2,7 @@ package cc.sportsdb.manager.controller.manager;
 
 import cc.sportsdb.common.dto.Result;
 import cc.sportsdb.manager.constant.RedisConstant;
+import cc.sportsdb.manager.domain.manager.Manager;
 import cc.sportsdb.manager.dto.manager.ManagerDTO;
 import cc.sportsdb.manager.service.manager.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,10 @@ public class ManagerController {
 
     @ResponseBody
     @PostMapping("/getManagers")
-    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#30", key = "#root.methodName")
-    public Map<String, Object> getManagers() {
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#6000#59", key = "#root.methodName")
+    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#6000#59", key = "#manager.id")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#6000#59")
+    public Map<String, Object> getManagers(@ModelAttribute("manager") Manager manager) {
         Result result = new Result();
         result.setStatus(1);
         result.setMessage("ok");

@@ -11,8 +11,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Component
-@EnableScheduling
+//@Component
+//@EnableScheduling
 public class Producer {
 
     private AtomicLong atomicLong = new AtomicLong(0);
