@@ -57,7 +57,8 @@ public class ManagerController {
 
     @ResponseBody
     @PostMapping("/getManagerById")
-    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#managerId")
+    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#managerId")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#managerId")
     public Map<String, Object> getManagerById(@RequestParam String managerId) {
         Result<Manager> result = new Result<>();
         Manager manager = managerService.getManagerById(managerId, "email");
