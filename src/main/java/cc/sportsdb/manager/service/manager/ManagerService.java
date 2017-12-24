@@ -31,4 +31,9 @@ public class ManagerService {
     public List<Manager> getManagers() {
         return managerDAO.getManagers();
     }
+
+    @DataSource(DataSourceConstant.DS_TEST)
+    public Manager getManagerById(String managerId, String fields) {
+        return managerDAO.getManagerById(managerId, fields);
+    }
 }

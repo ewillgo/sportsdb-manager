@@ -7,7 +7,7 @@
     <select id="getManagerById" resultType="cc.sportsdb.manager.domain.manager.Manager">
         SELECT ${fields}
         FROM <include refid="table_name"/>
-        WHERE id = #{id}
+        WHERE manager_id = #{managerId}
         LIMIT 1
     </select>
 

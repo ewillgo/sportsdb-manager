@@ -24,6 +24,7 @@ public class ManagerController {
     private ManagerService managerService;
 
     @GetMapping("/login")
+    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60")
     public String login() {
         return "manager/manager-login";
     }
@@ -39,14 +40,29 @@ public class ManagerController {
 
     @ResponseBody
     @PostMapping("/getManagers")
-//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#6000#59", key = "#root.methodName")
-    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#6000#59", key = "#manager.id")
-//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#6000#59")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER + "#60", key = "#manager.id")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60", key = "#root.methodName")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#root.methodName")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#root.methodName")
+    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#manager.id")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50")
     public Map<String, Object> getManagers(@ModelAttribute("manager") Manager manager) {
         Result result = new Result();
         result.setStatus(1);
         result.setMessage("ok");
         result.setData(managerService.getManagers());
+        return result;
+    }
+
+    @ResponseBody
+    @PostMapping("/getManagerById")
+    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#managerId")
+    public Map<String, Object> getManagerById(@RequestParam String managerId) {
+        Result<Manager> result = new Result<>();
+        Manager manager = managerService.getManagerById(managerId, "email");
+        result.setStatus(manager != null ? 0 : -1);
+        result.setData(manager);
         return result;
     }
 
