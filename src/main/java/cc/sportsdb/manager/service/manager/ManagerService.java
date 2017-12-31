@@ -1,6 +1,7 @@
 package cc.sportsdb.manager.service.manager;
 
 import cc.sportsdb.common.database.DataSource;
+import cc.sportsdb.common.database.mybatis.Page;
 import cc.sportsdb.manager.constant.DataSourceConstant;
 import cc.sportsdb.manager.dao.manager.ManagerDAO;
 import cc.sportsdb.manager.domain.manager.Manager;
@@ -28,12 +29,17 @@ public class ManagerService {
 
     //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#root.methodName")
     @DataSource(DataSourceConstant.DS_TEST)
-    public List<Manager> getManagers() {
-        return managerDAO.getManagers();
+    public List<Manager> getManagers(Page<Manager> page) {
+        return managerDAO.getManagers(page);
     }
 
     @DataSource(DataSourceConstant.DS_TEST)
     public Manager getManagerById(String managerId, String fields) {
         return managerDAO.getManagerById(managerId, fields);
+    }
+
+    @DataSource(DataSourceConstant.DS_TEST)
+    public Manager getManagerByEmailAndPassword(String email, String password, String fields) {
+        return managerDAO.getManagerByEmailAndPassword(email, password, fields, new Page<>());
     }
 }

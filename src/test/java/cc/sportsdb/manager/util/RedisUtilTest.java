@@ -2,6 +2,7 @@ package cc.sportsdb.manager.util;
 
 import cc.sportsdb.common.data.redis.DataProvider;
 import cc.sportsdb.common.data.redis.RedisUtil;
+import cc.sportsdb.common.database.mybatis.Page;
 import cc.sportsdb.common.test.AbstractMockController;
 import cc.sportsdb.manager.controller.manager.ManagerController;
 import cc.sportsdb.manager.domain.manager.Manager;
@@ -23,7 +24,8 @@ public class RedisUtilTest extends AbstractMockController<ManagerController> {
 
             @Override
             public List<Manager> getData(String key) {
-                return managerService.getManagers();
+                Page<Manager> page = new Page<>();
+                return managerService.getManagers(page);
             }
 
             @Override

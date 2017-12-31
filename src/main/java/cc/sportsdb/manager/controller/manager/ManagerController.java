@@ -1,5 +1,6 @@
 package cc.sportsdb.manager.controller.manager;
 
+import cc.sportsdb.common.database.mybatis.Page;
 import cc.sportsdb.common.dto.Result;
 import cc.sportsdb.manager.constant.RedisConstant;
 import cc.sportsdb.manager.domain.manager.Manager;
@@ -45,19 +46,20 @@ public class ManagerController {
 //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60", key = "#root.methodName")
 //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#root.methodName")
 //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#root.methodName")
-    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#manager.id")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#manager.id")
 //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50")
-    public Map<String, Object> getManagers(@ModelAttribute("manager") Manager manager) {
+    public Map<String, Object> getManagers(@ModelAttribute("manager") Manager manager, Page<Manager> page) {
         Result result = new Result();
         result.setStatus(1);
         result.setMessage("ok");
-        result.setData(managerService.getManagers());
+        managerService.getManagers(page);
+        result.setData(page);
         return result;
     }
 
     @ResponseBody
     @PostMapping("/getManagerById")
-    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#managerId")
+//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#managerId")
 //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#managerId")
     public Map<String, Object> getManagerById(@RequestParam String managerId) {
         Result<Manager> result = new Result<>();
@@ -67,4 +69,13 @@ public class ManagerController {
         return result;
     }
 
+    @ResponseBody
+    @PostMapping("/getManagerByEmailAndPassword")
+    public Map<String, Object> getManagerByEmailAndPassword(@RequestParam String email, @RequestParam String password) {
+        Result<Manager> result = new Result<>();
+        Manager manager = managerService.getManagerByEmailAndPassword(email, password, "email, password");
+        result.setStatus(manager != null ? 0 : -1);
+        result.setData(manager);
+        return result;
+    }
 }

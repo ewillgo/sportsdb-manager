@@ -1,5 +1,6 @@
 package cc.sportsdb.manager.dao.manager;
 
+import cc.sportsdb.common.database.mybatis.Page;
 import cc.sportsdb.manager.domain.manager.Manager;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,7 +18,7 @@ public interface ManagerDAO {
      */
     boolean addManager(Manager manager);
 
-    List<Manager> getManagers();
+    List<Manager> getManagers(Page<Manager> page);
 
     /**
      * 根据管理员ID获取数据
@@ -27,4 +28,7 @@ public interface ManagerDAO {
      * @return
      */
     Manager getManagerById(@Param("managerId") String managerId, @Param("fields") String fields);
+
+    Manager getManagerByEmailAndPassword(
+            @Param("email") String email, @Param("password") String password, @Param("fields") String fields, Page<Manager> page);
 }

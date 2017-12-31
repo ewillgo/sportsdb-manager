@@ -11,9 +11,18 @@
         LIMIT 1
     </select>
 
+    <select id="getManagerByEmailAndPassword" resultType="cc.sportsdb.manager.domain.manager.Manager">
+        SELECT ${fields}
+        FROM <include refid="table_name"/>
+        WHERE email = #{email}
+        AND password = #{password}
+        LIMIT 1
+    </select>
+
     <select id="getManagers" resultType="cc.sportsdb.manager.domain.manager.Manager">
         SELECT *
         FROM <include refid="table_name"/>
+        ORDER BY id DESC
     </select>
 
     <insert id="addManager" parameterType="cc.sportsdb.manager.domain.manager.Manager">
