@@ -47,7 +47,7 @@ public class ManagerController {
 //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS, key = "#root.methodName")
 //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#root.methodName")
 //    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50", key = "#manager.id")
-//    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50")
+    @Cacheable(value = RedisConstant.KEY_MANAGER_USERS + "#60#50")
     public Map<String, Object> getManagers(@ModelAttribute("manager") Manager manager, Page<Manager> page) {
         Result result = new Result();
         result.setStatus(1);
