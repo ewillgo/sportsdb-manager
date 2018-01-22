@@ -21,7 +21,8 @@ spring:
     config:
       discovery:
         enabled: true
-        service-id: sportsdb-config-server
+        service-id: config-server
       name: "${spring.application.name}-config"
-      profile: dev
       failFast: true
+      profile: dev
+      label: master
