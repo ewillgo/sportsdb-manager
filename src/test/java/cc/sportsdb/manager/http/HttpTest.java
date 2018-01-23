@@ -16,6 +16,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -44,5 +46,14 @@ public class HttpTest {
                 .size(100, 100).toFile(new File("e:/abc.jpg"));
 
         System.out.println();
+    }
+
+    @Test
+    public void httpPostTest() {
+        String url = "https://www.baidu.com";
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("name", "baidu");
+        String html = HttpUtil.httpPost(url, String.class, requestBody, requestBody);
+        System.out.println(html);
     }
 }
